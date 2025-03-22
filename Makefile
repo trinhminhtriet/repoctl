@@ -2,7 +2,7 @@ NAME    := repoctl
 PACKAGE := github.com/trinhminhtriet/$(NAME)
 DATE    := $(shell date +"%Y %B %d")
 GIT     := $(shell [ -d .git ] && git rev-parse --short HEAD)
-VERSION := v0.1.1
+VERSION := v0.1.2
 
 default: build
 
