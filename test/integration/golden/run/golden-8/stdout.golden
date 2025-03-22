@@ -1,0 +1,32 @@
+Index: 8
+Name: Should print table when output set to table in task
+WantErr: false
+Cmd:
+repoctl sync
+repoctl run default-output -p rmrfrs
+
+
+---
+
+Project [spiko]
+
+
+Project [rmrfrs]
+
+
+Project [awesome-job-boards]
+
+
+
+ Project            | Synced 
+--------------------+--------
+ example            | ✓      
+ spiko              | ✓      
+ rmrfrs           | ✓      
+ awesome-job-boards | ✓      
+
+
+ project  | default-output                                            
+----------+-----------------------------------------------------------
+ rmrfrs | /home/test/test/tmp/golden/run/golden-8/trinhminhtriet/rmrfrs 
+

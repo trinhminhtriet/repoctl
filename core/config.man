@@ -1,0 +1,647 @@
+.SH CONFIG
+
+The repoctl.yaml config is based on the following concepts:
+
+.RS 2
+.IP "\(bu" 2
+\fBprojects\fR are directories, which may be git repositories, in which case they have an URL attribute
+.PD 0
+.IP "\(bu" 2
+\fBtasks\fR are shell commands that you write and then run for selected \fBprojects\fR
+.IP "\(bu" 2
+\fBspecs\fR are configs that alter \fBtask\fR execution and output
+.PD 0
+.IP "\(bu" 2
+\fBtargets\fR are configs that provide shorthand filtering of \fBprojects\fR when executing tasks
+.PD 0
+.IP "\(bu" 2
+\fBenv\fR are environment variables that can be defined globally, per project and per task
+.PD 0
+.RE
+
+\fBSpecs\fR, \fBtargets\fR and \fBthemes\fR use a \fBdefault\fR object by default that the user can override to modify execution of repoctl commands.
+
+Check the files and environment section to see how the config file is loaded.
+
+Below is a config file detailing all of the available options and their defaults.
+
+.RS 4
+ # Import projects/tasks/env/specs/themes/targets from other configs
+ import:
+   - ./some-dir/repoctl.yaml
+
+ # Shell used for commands
+ # If you use any other program than bash, zsh, sh, node, and python
+ # then you have to provide the command flag if you want the command-line string evaluted
+ # For instance: bash -c
+ shell: bash
+
+ # If set to true, repoctl will override the URL of any existing remote
+ # and remove remotes not found in the config
+ sync_remotes: false
+
+ # Determines whether the .gitignore should be updated when syncing projects
+ sync_gitignore: true
+
+ # When running the TUI, specifies whether it should reload when the repoctl config is changed
+ reload_tui_on_change: false
+
+ # List of Projects
+ projects:
+   # Project name [required]
+   spiko:
+     # Determines if the project should be synchronized during 'repoctl sync'
+     sync: true
+
+     # Project path relative to the config file
+     # Defaults to project name if not specified
+     path: trinhminhtriet/spiko
+
+     # Repository URL
+     url: git@github.com:trinhminhtriet/spiko
+
+     # Project description
+     desc: A vim theme editor
+
+     # Custom clone command
+     # Defaults to "git clone URL PATH"
+     clone: git clone git@github.com:trinhminhtriet/spiko --branch main
+
+     # Branch to use as primary HEAD when cloning
+     # Defaults to repository's primary HEAD
+     branch:
+
+     # When true, clones only the specified branch or primary HEAD
+     single_branch: false
+
+     # Project tags
+     tags: [dev]
+
+     # Remote repositories
+     # Key is the remote name, value is the URL
+     remotes:
+       foo: https://github.com/bar
+
+     # Project-specific environment variables
+     env:
+       # Simple string value
+       branch: main
+
+       # Shell command substitution
+       date: $(date -u +"%Y-%m-%dT%H:%M:%S%Z")
+
+ # List of Specs
+ specs:
+   default:
+     # Output format for task results
+     # Options: stream, table, html, markdown
+     output: stream
+
+     # Enable parallel task execution
+     parallel: false
+
+     # Maximum number of concurrent tasks when running in parallel
+     forks: 4
+
+     # When true, continues execution if a command fails in a multi-command task
+     ignore_errors: false
+
+     # When true, skips project entries in the config that don't exist
+     # on the filesystem without throwing an error
+     ignore_non_existing: false
+
+     # Hide projects with no command output
+     omit_empty_rows: false
+
+     # Hide columns with no data
+     omit_empty_columns: false
+
+     # Clear screen before task execution (TUI only)
+     clear_output: true
+
+ # List of targets
+ targets:
+   default:
+     # Select all projects
+     all: false
+
+     # Select project in current working directory
+     cwd: false
+
+     # Select projects by name
+     projects: []
+
+     # Select projects by path
+     paths: []
+
+     # Select projects by tag
+     tags: []
+
+     # Select projects by tag expression
+     tags_expr: ""
+
+ # Environment variables available to all tasks
+ env:
+   # Simple string value
+   AUTHOR: "trinhminhtriet"
+
+   # Shell command substitution
+   DATE: $(date -u +"%Y-%m-%dT%H:%M:%S%Z")
+
+ # List of tasks
+ tasks:
+   # Command name [required]
+   simple-2: echo "hello world"
+
+   # Command name [required]
+   simple-1:
+     cmd: |
+       echo "hello world"
+     desc: simple command 1
+
+   # Command name [required]
+   advanced-command:
+     # Task description
+     desc: complex task
+
+     # Task theme
+     theme: default
+
+     # Shell interpreter
+     shell: bash
+
+     # Task-specific environment variables
+     env:
+       # Static value
+       branch: main
+
+       # Dynamic shell command output
+       num_lines: $(ls -1 | wc -l)
+
+     # Can reference predefined spec:
+     # spec: custom_spec
+     # or define inline:
+     spec:
+       output: table
+       parallel: true
+       forks: 4
+       ignore_errors: false
+       ignore_non_existing: true
+       omit_empty_rows: true
+       omit_empty_columns: true
+
+     # Can reference predefined target:
+     # target: custom_target
+     # or define inline:
+     target:
+       all: true
+       cwd: false
+       projects: [spiko]
+       paths: [frontend]
+       tags: [dev]
+       tags_expr: (prod || dev) && !test
+
+     # Single multi-line command
+     cmd: |
+       echo complex
+       echo command
+
+     # Multiple commands
+     commands:
+       # Node.js command example
+       - name: node-example
+ 	       shell: node
+         cmd: console.log("hello world from node.js");
+
+       # Reference to another task
+       - task: simple-1
+
+ # List of themes
+ # Styling Options:
+ #   Fg (foreground color): Empty string (""), hex color, or named color from W3C standard
+ #   Bg (background color): Empty string (""), hex color, or named color from W3C standard
+ #   Format: Empty string (""), "lower", "title", "upper"
+ #   Attribute: Empty string (""), "bold", "italic", "underline"
+ #   Alignment: Empty string (""), "left", "center", "right"
+ themes:
+   # Theme name [required]
+   default:
+     # Stream Output Configuration
+     stream:
+       # Include project name prefix for each line
+       prefix: true
+
+       # Colors to alternate between for each project prefix
+       prefix_colors: ["#d787ff", "#00af5f", "#d75f5f", "#5f87d7", "#00af87", "#5f00ff"]
+
+       # Add a header before each project
+       header: true
+
+       # String value that appears before the project name in the header
+       header_prefix: "TASK"
+
+       # Fill remaining spaces with a character after the prefix
+       header_char: "*"
+
+     # Table Output Configuration
+     table:
+       # Table style
+       # Available options: ascii, light, bold, double, rounded
+       style: ascii
+
+       # Border options for table output
+       border:
+         around: false  # Border around the table
+         columns: true  # Vertical border between columns
+         header: true   # Horizontal border between headers and rows
+         rows: false    # Horizontal border between rows
+
+       header:
+         fg: "#d787ff"
+         attr: bold
+         format: ""
+
+       title_column:
+         fg: "#5f87d7"
+         attr: bold
+         format: ""
+
+     # Tree View Configuration
+     tree:
+       # Tree style
+       # Available options: ascii, light, bold, double, rounded, bullet-square, bullet-circle, bullet-star
+       style: ascii
+
+     # Block Display Configuration
+     block:
+       key:
+         fg: "#5f87d7"
+       separator:
+         fg: "#5f87d7"
+       value:
+         fg:
+       value_true:
+         fg: "#00af5f"
+       value_false:
+         fg: "#d75f5f"
+
+      # TUI Configuration
+      tui:
+        default:
+          fg:
+          bg:
+          attr:
+
+        border:
+          fg:
+        border_focus:
+          fg: "#d787ff"
+
+        title:
+          fg:
+          bg:
+          attr:
+          align: center
+        title_active:
+          fg: "#000000"
+          bg: "#d787ff"
+          attr:
+          align: center
+
+        button:
+          fg:
+          bg:
+          attr:
+          format:
+        button_active:
+          fg: "#080808"
+          bg: "#d787ff"
+          attr:
+          format:
+
+        table_header:
+          fg: "#d787ff"
+          bg:
+          attr: bold
+          align: left
+          format:
+
+        item:
+          fg:
+          bg:
+          attr:
+        item_focused:
+          fg: "#ffffff"
+          bg: "#262626"
+          attr:
+        item_selected:
+          fg: "#5f87d7"
+          bg:
+          attr:
+        item_dir:
+          fg: "#d787ff"
+          bg:
+          attr:
+        item_ref:
+          fg: "#d787ff"
+          bg:
+          attr:
+
+        search_label:
+          fg: "#d7d75f"
+          bg:
+          attr: bold
+        search_text:
+          fg:
+          bg:
+          attr:
+
+        filter_label:
+          fg: "#d7d75f"
+          bg:
+          attr: bold
+        filter_text:
+          fg:
+          bg:
+          attr:
+
+        shortcut_label:
+          fg: "#00af5f"
+          bg:
+          attr:
+        shortcut_text:
+          fg:
+          bg:
+          attr:
+.RE
+
+
+.SH EXAMPLES
+
+.TP
+Initialize repoctl
+.B samir@hal-9000 ~ $ repoctl init
+
+.nf
+Initialized repoctl repository in /tmp
+- Created repoctl.yaml
+- Created .gitignore
+
+Following projects were added to repoctl.yaml
+
+ Project  | Path
+----------+------------
+ test     | .
+ spiko    | dev/spiko
+.fi
+
+.TP
+Clone projects
+.B samir@hal-9000 ~ $ repoctl sync --parallel --forks 8
+.nf
+spiko | Cloning into '/tmp/dev/spiko'...
+
+ Project  | Synced
+----------+--------
+ test     | ✓
+ spiko    | ✓
+.fi
+
+.TP
+List all projects
+.B samir@hal-9000 ~ $ repoctl list projects
+.nf
+ Project
+---------
+ test
+ spiko
+.fi
+
+.TP
+List all projects with output set to tree
+.nf
+.B samir@hal-9000 ~ $ repoctl list projects --tree
+    ── dev
+       └─ spiko
+.fi
+
+.nf
+
+.TP
+List all tags
+.B samir@hal-9000 ~ $ repoctl list tags
+.nf
+ Tag | Project
+-----+---------
+ dev | spiko
+.fi
+
+.TP
+List all tasks
+.nf
+.B samir@hal-9000 ~ $ repoctl list tasks
+ Task             | Description
+------------------+------------------
+ simple-1         | simple command 1
+ simple-2         |
+ advanced-command | complex task
+.fi
+
+.TP
+Describe a task
+.nf
+.B samir@hal-9000 ~ $ repoctl describe tasks advanced-command
+Name: advanced-command
+Description: complex task
+Theme: default
+Target:
+    All: true
+    Cwd: false
+    Projects: spiko
+    Paths: frontend
+    Tags: dev
+    TagsExpr: ""
+Spec:
+    Output: table
+    Parallel: true
+    Forks: 4
+    IgnoreErrors: false
+    IgnoreNonExisting: false
+    OmitEmptyRows: false
+    OmitEmptyColumns: false
+Env:
+    branch: dev
+    num_lines: 2
+Cmd:
+    echo advanced
+    echo command
+Commands:
+     - simple-1
+     - simple-2
+     - cmd
+.fi
+
+.TP
+Run a task for all projects with tag 'dev'
+.nf
+.B samir@hal-9000 ~ $ repoctl run simple-1 --tags dev
+ Project | Simple-1
+---------+-------------
+ spiko   | hello world
+.fi
+
+.TP
+Run a task for all projects matching tags expression 'dev && !prod'
+.nf
+.B samir@hal-9000 ~ $ repoctl run simple-1 --tags-expr '(dev && !prod)'
+ Project | Simple-1
+---------+-------------
+ spiko   | hello world
+.fi
+
+.TP
+Run ad-hoc command for all projects
+.nf
+.B samir@hal-9000 ~ $ repoctl exec 'echo 123' --all
+ Project | Output
+---------+--------
+ archive | 123
+ spiko   | 123
+.fi
+
+.SH FILTERING PROJECTS
+Projects can be filtered when managing projects (sync/list/describe) or running tasks.
+Filters can be specified through CLI flags or target configurations.
+
+.PP
+Available options:
+.RS 2
+.IP "\(bu" 2
+all: include all projects, overriding other filters
+.IP "\(bu" 2
+cwd: include project under the current working directory
+.IP "\(bu" 2
+projects: Filter by project names
+.IP "\(bu" 2
+paths: Filter by project paths
+.IP "\(bu" 2
+tags: Filter by project tags
+.IP "\(bu" 2
+tags_expr: Filter using tag logic expressions
+.IP "\(bu" 2
+target: Filter using target
+.RE
+
+.PP
+
+For \fBrepoctl sync/list/describe\fR:
+.RS 2
+.IP "\(bu" 2
+No filters: Targets all projects
+.IP "\(bu" 2
+Multiple filters: Select intersection of projects/paths/tags/tags_expr filter
+.RE
+
+For \fBrepoctl run/exec\fR:
+.RS 2
+.IP "1." 4
+Runtime flags (highest priority)
+.IP "2." 4
+Target flag configuration (\fB--target\fR)
+.IP "3." 4
+Task's default target data (lowest priority)
+.RE
+
+The default target is named `default` and can be overridden by defining a target named `default` in the config. This only applies for sub-commands `run` and `exec`.
+
+.SH TAGS EXPRESSION
+
+Tag expressions allow filtering projects using boolean operations on their tags.
+The expression is evaluated for each project's tags to determine if the project should be included.
+
+.PP
+Operators (in precedence order):
+
+.RS 2
+.IP "\(bu" 2
+(): Parentheses for grouping
+.PD 0
+.IP "\(bu" 2
+!: NOT operator (logical negation)
+.PD 0
+.IP "\(bu" 2
+&&: AND operator (logical conjunction)
+.PD 0
+.IP "\(bu" 2
+||: OR operator (logical disjunction)
+.RE
+
+.PP
+For example, the expression:
+
+  \fB(main && (dev || prod)) && !test\fR
+
+.PP
+requires the projects to pass these conditions:
+
+.RS 2
+.IP "\(bu" 2
+Must have "main" tag
+.PD 0
+.IP "\(bu" 2
+Must have either "dev" OR "prod" tag
+.IP "\(bu" 2
+Must NOT have "test" tag
+.PD 0
+.RE
+
+.SH FILES
+
+When running a command,
+.B repoctl
+will check the current directory and all parent directories for the following files: repoctl.yaml, repoctl.yml, .repoctl.yaml, .repoctl.yml.
+
+Additionally, it will import (if found) a config file from:
+
+.RS 2
+.IP "\(bu" 2
+Linux: \fB$XDG_CONFIG_HOME/repoctl/config.yaml\fR or \fB$HOME/.config/repoctl/config.yaml\fR if \fB$XDG_CONFIG_HOME\fR is not set.
+.IP "\(bu" 2
+Darwin: \fB$HOME/Library/Application/repoctl\fR
+.IP "\(bu" 2
+Windows: \fB%AppData%\repoctl\fR
+.RE
+
+Both the config and user config can be specified via flags or environments variables.
+
+.SH
+ENVIRONMENT
+
+.TP
+.B MANI_CONFIG
+Override config file path
+
+.TP
+.B MANI_USER_CONFIG
+Override user config file path
+
+.TP
+.B NO_COLOR
+If this env variable is set (regardless of value) then all colors will be disabled
+
+.SH BUGS
+
+See GitHub Issues:
+.UR https://github.com/trinhminhtriet/repoctl/issues
+.ME .
+
+.SH AUTHOR
+
+.B repoctl
+was written by Triet Trinh
+.MT contact@trinhminhtriet.com
+.ME .
+For updates and more information go to
+.UR https://\:www.trinhminhtriet.com
+trinhminhtriet.com
+.UE .

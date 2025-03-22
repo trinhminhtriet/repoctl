@@ -1,0 +1,15 @@
+Index: 13
+Name: List all tags
+WantErr: false
+Cmd:
+repoctl list tags
+
+---
+
+ Tag      | Project            
+----------+--------------------
+ frontend | spiko              
+          | rmrfrs           
+ misc     | rmrfrs           
+ cli      | awesome-job-boards 
+

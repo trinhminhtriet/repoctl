@@ -1,0 +1,32 @@
+Index: 3
+Name: Should exec when filtered on project name
+WantErr: false
+Cmd:
+repoctl sync
+repoctl exec -o table --projects spiko ls
+
+
+---
+
+Project [spiko]
+
+
+Project [rmrfrs]
+
+
+Project [awesome-job-boards]
+
+
+
+ Project            | Synced 
+--------------------+--------
+ example            | ✓      
+ spiko              | ✓      
+ rmrfrs           | ✓      
+ awesome-job-boards | ✓      
+
+
+ project | output 
+---------+--------
+ spiko   | empty  
+

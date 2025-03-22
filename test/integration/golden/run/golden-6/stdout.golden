@@ -1,0 +1,34 @@
+Index: 6
+Name: Should run on default tags
+WantErr: false
+Cmd:
+repoctl sync
+repoctl run -o table default-tags
+
+
+---
+
+Project [spiko]
+
+
+Project [rmrfrs]
+
+
+Project [awesome-job-boards]
+
+
+
+ Project            | Synced 
+--------------------+--------
+ example            | ✓      
+ spiko              | ✓      
+ rmrfrs           | ✓      
+ awesome-job-boards | ✓      
+
+
+ project  | default-tags                                              
+----------+-----------------------------------------------------------
+ spiko    | /home/test/test/tmp/golden/run/golden-6/trinhminhtriet/spiko    
+----------+-----------------------------------------------------------
+ rmrfrs | /home/test/test/tmp/golden/run/golden-6/trinhminhtriet/rmrfrs 
+

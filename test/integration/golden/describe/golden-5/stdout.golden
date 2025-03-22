@@ -1,0 +1,15 @@
+Index: 5
+Name: Describe projects matching multiple tags
+WantErr: false
+Cmd:
+repoctl describe projects --tags misc,frontend
+
+---
+
+name: rmrfrs
+sync: true
+path: trinhminhtriet/rmrfrs
+url: https://github.com/trinhminhtriet/rmrfrs
+single_branch: false
+tags: frontend, misc
+

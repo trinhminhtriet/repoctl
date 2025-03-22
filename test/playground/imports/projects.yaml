@@ -1,0 +1,9 @@
+import:
+  - ./tasks.yaml
+
+projects:
+  awesome-job-boards:
+    path: ../awesome-job-boards
+    url: git@github.com:trinhminhtriet/awesome-job-boards
+    tags: [cli,bash]
+

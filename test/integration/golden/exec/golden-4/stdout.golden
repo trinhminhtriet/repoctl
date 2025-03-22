@@ -1,0 +1,34 @@
+Index: 4
+Name: Should exec when filtered on tags
+WantErr: false
+Cmd:
+repoctl sync
+repoctl exec -o table --tags frontend ls
+
+
+---
+
+Project [spiko]
+
+
+Project [rmrfrs]
+
+
+Project [awesome-job-boards]
+
+
+
+ Project            | Synced 
+--------------------+--------
+ example            | ✓      
+ spiko              | ✓      
+ rmrfrs           | ✓      
+ awesome-job-boards | ✓      
+
+
+ project  | output 
+----------+--------
+ spiko    | empty  
+----------+--------
+ rmrfrs | empty  
+

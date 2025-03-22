@@ -1,0 +1,79 @@
+version: 2
+project_name: repoctl
+
+before:
+  hooks:
+    - go mod download
+
+builds:
+  - binary: repoctl
+    id: repoctl
+    ldflags: -s -w -X github.com/trinhminhtriet/repoctl/cmd.version={{ .Version }} -X github.com/trinhminhtriet/repoctl/cmd.commit={{ .ShortCommit }} -X github.com/trinhminhtriet/repoctl/cmd.date={{ .Date }}
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+      - linux
+      - windows
+      - freebsd
+      - netbsd
+      - openbsd
+    goarch:
+      - amd64
+      - "386"
+      - arm
+      - arm64
+    goarm:
+      - "7"
+
+    ignore:
+      - goos: freebsd
+        goarch: arm
+      - goos: freebsd
+        goarch: arm64
+
+      - goos: openbsd
+        goarch: arm
+      - goos: openbsd
+        goarch: arm64
+
+      - goos: darwin
+        goarch: arm
+      - goos: darwin
+        goarch: "386"
+
+      - goos: windows
+        goarch: arm
+      - goos: windows
+        goarch: arm64
+
+archives:
+  - id: "repoctl"
+    builds: ["repoctl"]
+    format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - LICENSE
+      - src: "core/repoctl.1"
+        dst: "."
+        strip_parent: true
+
+brews:
+  - name: repoctl
+    description: "CLI tool to help you manage multiple repositories"
+    homepage: "https://trinhminhtriet.com"
+    license: "MIT"
+    repository:
+      owner: trinhminhtriet
+      name: homebrew-repoctl
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    directory: Formula
+
+checksum:
+  name_template: "checksums.txt"
+
+snapshot:
+  version_template: "{{ .Tag }}"

@@ -1,0 +1,34 @@
+Index: 4
+Name: Should run when filtered on tags
+WantErr: false
+Cmd:
+repoctl sync
+repoctl run -o table --tags frontend pwd
+
+
+---
+
+Project [spiko]
+
+
+Project [rmrfrs]
+
+
+Project [awesome-job-boards]
+
+
+
+ Project            | Synced 
+--------------------+--------
+ example            | ✓      
+ spiko              | ✓      
+ rmrfrs           | ✓      
+ awesome-job-boards | ✓      
+
+
+ project  | pwd                                                       
+----------+-----------------------------------------------------------
+ spiko    | /home/test/test/tmp/golden/run/golden-4/trinhminhtriet/spiko    
+----------+-----------------------------------------------------------
+ rmrfrs | /home/test/test/tmp/golden/run/golden-4/trinhminhtriet/rmrfrs 
+

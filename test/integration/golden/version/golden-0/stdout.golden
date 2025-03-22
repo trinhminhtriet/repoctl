@@ -1,0 +1,10 @@
+Index: 0
+Name: Print version when no repoctl config is found
+WantErr: false
+Cmd:
+repoctl --version
+
+---
+Version: dev       
+Commit: none      
+Date: n/a       

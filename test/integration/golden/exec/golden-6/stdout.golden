@@ -1,0 +1,32 @@
+Index: 6
+Name: Should dry run exec
+WantErr: false
+Cmd:
+repoctl sync
+repoctl exec -o table --dry-run --projects awesome-job-boards pwd
+
+
+---
+
+Project [spiko]
+
+
+Project [rmrfrs]
+
+
+Project [awesome-job-boards]
+
+
+
+ Project            | Synced 
+--------------------+--------
+ example            | ✓      
+ spiko              | ✓      
+ rmrfrs           | ✓      
+ awesome-job-boards | ✓      
+
+
+ project            | output 
+--------------------+--------
+ awesome-job-boards | pwd    
+

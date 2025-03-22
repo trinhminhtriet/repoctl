@@ -1,0 +1,13 @@
+Index: 8
+Name: List projects matching 1 dir
+WantErr: false
+Cmd:
+repoctl list projects --paths frontend
+
+---
+
+ Project  | Tag            
+----------+----------------
+ spiko    | frontend       
+ rmrfrs | frontend, misc 
+

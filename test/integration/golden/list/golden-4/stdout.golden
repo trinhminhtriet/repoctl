@@ -1,0 +1,15 @@
+Index: 4
+Name: List only project names and no description/tags
+WantErr: false
+Cmd:
+repoctl list projects --output table --headers project
+
+---
+
+ Project            
+--------------------
+ example            
+ spiko              
+ rmrfrs           
+ awesome-job-boards 
+

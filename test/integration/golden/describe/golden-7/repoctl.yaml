@@ -1,0 +1,16 @@
+projects:
+  example:
+    path: .
+
+  blast:
+    path: trinhminhtriet/blast
+    url: https://github.com/trinhminhtriet/blast
+    tags: [frontend]
+
+  rmrfrs:
+    path: trinhminhtriet/rmrfrs
+    url: https://github.com/trinhminhtriet/rmrfrs
+    tags: [frontend, misc]
+
+  awesome-job-boards:
+    url: https://github.com/trinhminhtriet/awesome-job-boards

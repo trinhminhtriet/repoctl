@@ -1,0 +1,44 @@
+Index: 2
+Name: Should run in all projects
+WantErr: false
+Cmd:
+repoctl sync
+repoctl run --all pwd
+
+
+---
+
+Project [spiko]
+
+
+Project [rmrfrs]
+
+
+Project [awesome-job-boards]
+
+
+
+ Project            | Synced 
+--------------------+--------
+ example            | ✓      
+ spiko              | ✓      
+ rmrfrs           | ✓      
+ awesome-job-boards | ✓      
+
+
+TASK [pwd]
+
+example | /home/test/test/tmp/golden/run/golden-2
+
+TASK [pwd]
+
+spiko | /home/test/test/tmp/golden/run/golden-2/trinhminhtriet/spiko
+
+TASK [pwd]
+
+rmrfrs | /home/test/test/tmp/golden/run/golden-2/trinhminhtriet/rmrfrs
+
+TASK [pwd]
+
+awesome-job-boards | /home/test/test/tmp/golden/run/golden-2/awesome-job-boards
+

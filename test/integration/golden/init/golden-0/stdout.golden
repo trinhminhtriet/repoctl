@@ -1,0 +1,16 @@
+Index: 0
+Name: Initialize repoctl in empty directory
+WantErr: false
+Cmd:
+repoctl init --color=false
+
+---
+
+Initialized repoctl repository in /home/test/test/tmp/golden/init/golden-0
+- Created repoctl.yaml
+
+Following projects were added to repoctl.yaml
+
+ Project  | Path 
+----------+------
+ golden-0 | .    

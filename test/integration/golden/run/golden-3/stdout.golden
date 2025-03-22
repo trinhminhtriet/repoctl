@@ -1,0 +1,32 @@
+Index: 3
+Name: Should run when filtered on project
+WantErr: false
+Cmd:
+repoctl sync
+repoctl run -o table --projects spiko pwd
+
+
+---
+
+Project [spiko]
+
+
+Project [rmrfrs]
+
+
+Project [awesome-job-boards]
+
+
+
+ Project            | Synced 
+--------------------+--------
+ example            | ✓      
+ spiko              | ✓      
+ rmrfrs           | ✓      
+ awesome-job-boards | ✓      
+
+
+ project | pwd                                                    
+---------+--------------------------------------------------------
+ spiko   | /home/test/test/tmp/golden/run/golden-3/trinhminhtriet/spiko 
+

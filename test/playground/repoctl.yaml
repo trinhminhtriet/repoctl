@@ -1,0 +1,155 @@
+import:
+  # - ./imports/many-projects.yaml
+  - ./imports/projects.yaml
+  - ./imports/tasks.yaml
+  - ./imports/targets.yaml
+  - ./imports/specs.yaml
+  - ./imports/themes.yaml
+
+sync_remotes: true
+
+projects:
+  playground:
+    path: .
+
+  rmrfrs:
+    path: trinhminhtriet/rmrfrs
+    url: git+ssh://git@github.com/trinhminhtriet/rmrfrs.git
+    clone: git clone $MANI_PROJECT_URL $MANI_PROJECT_PATH
+    tags: [frontend, node]
+    remotes:
+      foo: bar
+    env:
+      foo: bar
+
+  blast:
+    path: trinhminhtriet/blast
+    url: https://github.com/trinhminhtriet/blast
+    tags: [frontend]
+
+  kaka:
+    path: kaka
+    url: git+ssh://git@github.com/trinhminhtriet/rmrfrs.git
+    tags: [frontend, node]
+
+# GLOBAL ENVS
+env:
+  VERSION: v0.1.0
+  GIT: git --no-pager
+  DATE: $(date -u +"%Y-%m-%dT%H:%M:%S%Z")
+  # NO_COLOR: true
+
+# TASKS
+tasks:
+  test:
+    desc: simple test task
+    cmd: echo "$branch_name"
+    spec:
+      ignore_errors: true
+      ignore_non_existing: true
+    env:
+      branch_name: main
+
+  git-status: git status
+
+  echo:
+    desc: Print hello world
+    cmd: echo "hello world"
+
+  ping:
+    desc: ping server
+    cmd: echo pong
+
+  sleep:
+    desc: Sleep 2 seconds
+    cmd: sleep 2 && echo "slept 2 seconds"
+
+  status:
+    desc: git status
+    target: blast
+    spec:
+      output: text
+    commands:
+      - mcd: git status
+      - cmd: git branch
+    cmd: echo done
+
+  stream:
+    desc: test text info
+    env:
+      BRANCH: main
+      FOO: bar
+    target: blast
+    spec:
+      output: text
+    commands:
+      - task: echo
+      - cmd: echo lala
+    cmd: echo hi
+
+  table:
+    env:
+      BRANCH: lala
+      FOO: bar
+    target: blast
+    spec:
+      output: table
+    commands:
+      - task: echo
+      - cmd: echo lala
+    cmd: echo hi
+
+  install:
+    desc: npm install
+    cmd: npm install
+
+  fail:
+    desc: fail on purpose
+    cmd: |
+      echo "FAILED"
+      exit 1
+  node:
+    target: all
+    shell: node
+    cmd: console.log("Running node.js example")
+
+  random-data:
+    desc: generate random data
+    cmd: |
+      jot -r 1
+      echo "RANDOM-DATA"
+      jot -r 2
+      sleep 2
+      jot -r 2
+      sleep 2
+
+  many:
+    desc: run many tasks
+    env:
+      BRANCH: lala
+      HELLO: WORLD
+    target: all
+    spec:
+      ignore_errors: true
+
+    commands:
+      - task: node
+      - task: fail
+      - task: echo
+      - task: random-data
+      - task: ping
+
+  submarine:
+    desc: Submarine test
+    spec:
+      output: table
+
+    cmd: echo 0
+    commands:
+      - name: command-1
+        cmd: echo 1
+      - name: command-2
+        cmd: echo 2
+      - name: command-3
+        cmd: echo 3
+      - task: pwd

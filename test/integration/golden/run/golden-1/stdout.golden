@@ -1,0 +1,28 @@
+Index: 1
+Name: Should run in zero projects
+WantErr: true
+Cmd:
+repoctl sync
+repoctl run pwd -o table
+
+
+---
+
+Project [spiko]
+
+
+Project [rmrfrs]
+
+
+Project [awesome-job-boards]
+
+
+
+ Project            | Synced 
+--------------------+--------
+ example            | ✓      
+ spiko              | ✓      
+ rmrfrs           | ✓      
+ awesome-job-boards | ✓      
+
+error: no matching projects found

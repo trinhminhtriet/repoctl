@@ -1,0 +1,8 @@
+tasks:
+  hello:
+    desc: hello world
+    cmd: echo "Hello World"
+
+  pwd:
+    target: root
+    cmd: pwd

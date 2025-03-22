@@ -1,0 +1,13 @@
+Index: 7
+Name: List two projects
+WantErr: false
+Cmd:
+repoctl list projects spiko rmrfrs
+
+---
+
+ Project  | Tag            
+----------+----------------
+ spiko    | frontend       
+ rmrfrs | frontend, misc 
+

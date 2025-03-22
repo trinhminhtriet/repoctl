@@ -1,0 +1,28 @@
+Index: 1
+Name: Initialize repoctl with auto-discovery
+WantErr: false
+Cmd:
+(mkdir -p rmrfrs && touch rmrfrs/empty);
+(mkdir -p blast && touch blast/empty && cd blast && git init -b main && git remote add origin https://github.com/trinhminhtriet/blast);
+(mkdir -p nested/awesome-job-boards && touch nested/awesome-job-boards/empty && cd nested/awesome-job-boards && git init -b main && git remote add origin https://github.com/trinhminhtriet/awesome-job-boards);
+(mkdir nameless && touch nameless/empty);
+(git init -b main && git remote add origin https://github.com/trinhminhtriet/spiko)
+repoctl init --color=false
+
+
+---
+Initialized empty Git repository in /home/test/test/tmp/golden/init/golden-1/blast/.git/
+Initialized empty Git repository in /home/test/test/tmp/golden/init/golden-1/nested/awesome-job-boards/.git/
+Initialized empty Git repository in /home/test/test/tmp/golden/init/golden-1/.git/
+
+Initialized repoctl repository in /home/test/test/tmp/golden/init/golden-1
+- Created repoctl.yaml
+- Created .gitignore
+
+Following projects were added to repoctl.yaml
+
+ Project            | Path                      
+--------------------+---------------------------
+ golden-1           | .                         
+ awesome-job-boards | nested/awesome-job-boards 
+ blast         | blast                

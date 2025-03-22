@@ -1,0 +1,27 @@
+Index: 9
+Name: Describe 1 tasks
+WantErr: false
+Cmd:
+repoctl describe tasks status
+
+---
+
+name: status
+description: 
+theme: default
+target: 
+    all: false
+    cwd: false
+    projects: 
+    paths: 
+    tags: 
+    tags_expr: 
+spec: 
+    output: stream
+    parallel: false
+    ignore_errors: false
+    omit_empty_rows: false
+    omit_empty_columns: false
+cmd: 
+    git status
+

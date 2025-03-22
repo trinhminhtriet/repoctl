@@ -1,0 +1,9 @@
+Index: 2
+Name: Throw error when initialize in existing repoctl directory
+WantErr: true
+Cmd:
+repoctl init --color=false
+
+---
+error: `/home/test/test/tmp/golden/init/golden-2` is already a repoctl directory
+

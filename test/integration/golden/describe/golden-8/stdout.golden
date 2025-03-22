@@ -1,0 +1,224 @@
+Index: 8
+Name: Describe all tasks
+WantErr: false
+Cmd:
+repoctl describe tasks
+
+---
+
+name: fetch
+description: Fetch git
+theme: default
+target: 
+    all: false
+    cwd: false
+    projects: 
+    paths: 
+    tags: 
+    tags_expr: 
+spec: 
+    output: stream
+    parallel: false
+    ignore_errors: false
+    omit_empty_rows: false
+    omit_empty_columns: false
+cmd: 
+    git fetch
+
+--
+
+name: status
+description: 
+theme: default
+target: 
+    all: false
+    cwd: false
+    projects: 
+    paths: 
+    tags: 
+    tags_expr: 
+spec: 
+    output: stream
+    parallel: false
+    ignore_errors: false
+    omit_empty_rows: false
+    omit_empty_columns: false
+cmd: 
+    git status
+
+--
+
+name: checkout
+description: 
+theme: default
+target: 
+    all: false
+    cwd: false
+    projects: 
+    paths: 
+    tags: 
+    tags_expr: 
+spec: 
+    output: stream
+    parallel: false
+    ignore_errors: false
+    omit_empty_rows: false
+    omit_empty_columns: false
+env: 
+    branch: dev
+cmd: 
+    git checkout $branch
+
+--
+
+name: create-branch
+description: 
+theme: default
+target: 
+    all: false
+    cwd: false
+    projects: 
+    paths: 
+    tags: 
+    tags_expr: 
+spec: 
+    output: stream
+    parallel: false
+    ignore_errors: false
+    omit_empty_rows: false
+    omit_empty_columns: false
+cmd: 
+    git checkout -b $branch
+
+--
+
+name: multi
+description: 
+theme: default
+target: 
+    all: false
+    cwd: false
+    projects: 
+    paths: 
+    tags: 
+    tags_expr: 
+spec: 
+    output: stream
+    parallel: false
+    ignore_errors: false
+    omit_empty_rows: false
+    omit_empty_columns: false
+cmd: 
+    echo "1st line "
+    echo "2nd line"
+
+--
+
+name: default-tags
+description: 
+theme: default
+target: 
+    all: false
+    cwd: false
+    projects: 
+    paths: 
+    tags: frontend
+    tags_expr: 
+spec: 
+    output: stream
+    parallel: false
+    ignore_errors: false
+    omit_empty_rows: false
+    omit_empty_columns: false
+cmd: 
+    pwd
+
+--
+
+name: default-projects
+description: 
+theme: default
+target: 
+    all: false
+    cwd: false
+    projects: rmrfrs
+    paths: 
+    tags: 
+    tags_expr: 
+spec: 
+    output: stream
+    parallel: false
+    ignore_errors: false
+    omit_empty_rows: false
+    omit_empty_columns: false
+cmd: 
+    pwd
+
+--
+
+name: default-output
+description: 
+theme: default
+target: 
+    all: false
+    cwd: false
+    projects: 
+    paths: 
+    tags: 
+    tags_expr: 
+spec: 
+    output: table
+    parallel: false
+    ignore_errors: false
+    omit_empty_rows: false
+    omit_empty_columns: false
+cmd: 
+    pwd
+
+--
+
+name: pwd
+description: 
+theme: default
+target: 
+    all: false
+    cwd: false
+    projects: 
+    paths: 
+    tags: 
+    tags_expr: 
+spec: 
+    output: stream
+    parallel: false
+    ignore_errors: false
+    omit_empty_rows: false
+    omit_empty_columns: false
+cmd: 
+    pwd
+
+--
+
+name: submarine
+description: Submarine test
+theme: default
+target: 
+    all: false
+    cwd: false
+    projects: 
+    paths: 
+    tags: 
+    tags_expr: 
+spec: 
+    output: table
+    parallel: false
+    ignore_errors: false
+    omit_empty_rows: false
+    omit_empty_columns: false
+cmd: 
+    echo 0
+commands: 
+    - command-1 
+    - command-2 
+    - command-3 
+    - pwd 
+

@@ -1,0 +1,15 @@
+Index: 6
+Name: Describe 1 project
+WantErr: false
+Cmd:
+repoctl describe projects spiko
+
+---
+
+name: spiko
+sync: true
+path: trinhminhtriet/spiko
+url: https://github.com/trinhminhtriet/spiko
+single_branch: false
+tags: frontend
+

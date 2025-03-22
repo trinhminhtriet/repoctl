@@ -1,0 +1,33 @@
+Index: 5
+Name: Should run when filtered on cwd
+WantErr: false
+Cmd:
+repoctl sync
+cd awesome-job-boards
+repoctl run -o table --cwd pwd
+
+
+---
+
+Project [spiko]
+
+
+Project [rmrfrs]
+
+
+Project [awesome-job-boards]
+
+
+
+ Project            | Synced 
+--------------------+--------
+ example            | ✓      
+ spiko              | ✓      
+ rmrfrs           | ✓      
+ awesome-job-boards | ✓      
+
+
+ project            | pwd                                                        
+--------------------+------------------------------------------------------------
+ awesome-job-boards | /home/test/test/tmp/golden/run/golden-5/awesome-job-boards 
+

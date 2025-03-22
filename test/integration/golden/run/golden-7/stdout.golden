@@ -1,0 +1,32 @@
+Index: 7
+Name: Should run on default projects
+WantErr: false
+Cmd:
+repoctl sync
+repoctl run -o table default-projects
+
+
+---
+
+Project [spiko]
+
+
+Project [rmrfrs]
+
+
+Project [awesome-job-boards]
+
+
+
+ Project            | Synced 
+--------------------+--------
+ example            | ✓      
+ spiko              | ✓      
+ rmrfrs           | ✓      
+ awesome-job-boards | ✓      
+
+
+ project  | default-projects                                          
+----------+-----------------------------------------------------------
+ rmrfrs | /home/test/test/tmp/golden/run/golden-7/trinhminhtriet/rmrfrs 
+

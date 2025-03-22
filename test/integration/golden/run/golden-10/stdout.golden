@@ -1,0 +1,42 @@
+Index: 10
+Name: Should run multiple commands
+WantErr: false
+Cmd:
+repoctl sync
+repoctl run pwd multi -o table --all
+
+
+---
+
+Project [spiko]
+
+
+Project [rmrfrs]
+
+
+Project [awesome-job-boards]
+
+
+
+ Project            | Synced 
+--------------------+--------
+ example            | ✓      
+ spiko              | ✓      
+ rmrfrs           | ✓      
+ awesome-job-boards | ✓      
+
+
+ project            | pwd                                                         | multi     
+--------------------+-------------------------------------------------------------+-----------
+ example            | /home/test/test/tmp/golden/run/golden-10                    | 1st line  
+                    |                                                             | 2nd line  
+--------------------+-------------------------------------------------------------+-----------
+ spiko              | /home/test/test/tmp/golden/run/golden-10/trinhminhtriet/spiko     | 1st line  
+                    |                                                             | 2nd line  
+--------------------+-------------------------------------------------------------+-----------
+ rmrfrs           | /home/test/test/tmp/golden/run/golden-10/trinhminhtriet/rmrfrs  | 1st line  
+                    |                                                             | 2nd line  
+--------------------+-------------------------------------------------------------+-----------
+ awesome-job-boards | /home/test/test/tmp/golden/run/golden-10/awesome-job-boards | 1st line  
+                    |                                                             | 2nd line  
+

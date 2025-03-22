@@ -1,0 +1,38 @@
+Index: 11
+Name: Should run sub-commands
+WantErr: false
+Cmd:
+repoctl sync
+repoctl run submarine --all
+
+
+---
+
+Project [spiko]
+
+
+Project [rmrfrs]
+
+
+Project [awesome-job-boards]
+
+
+
+ Project            | Synced 
+--------------------+--------
+ example            | ✓      
+ spiko              | ✓      
+ rmrfrs           | ✓      
+ awesome-job-boards | ✓      
+
+
+ project            | command-1 | command-2 | command-3 | pwd                                                         | submarine 
+--------------------+-----------+-----------+-----------+-------------------------------------------------------------+-----------
+ example            | 1         | 2         | 3         | /home/test/test/tmp/golden/run/golden-11                    | 0         
+--------------------+-----------+-----------+-----------+-------------------------------------------------------------+-----------
+ spiko              | 1         | 2         | 3         | /home/test/test/tmp/golden/run/golden-11/trinhminhtriet/spiko     | 0         
+--------------------+-----------+-----------+-----------+-------------------------------------------------------------+-----------
+ rmrfrs           | 1         | 2         | 3         | /home/test/test/tmp/golden/run/golden-11/trinhminhtriet/rmrfrs  | 0         
+--------------------+-----------+-----------+-----------+-------------------------------------------------------------+-----------
+ awesome-job-boards | 1         | 2         | 3         | /home/test/test/tmp/golden/run/golden-11/awesome-job-boards | 0         
+

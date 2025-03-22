@@ -1,0 +1,15 @@
+Index: 3
+Name: List multiple projects
+WantErr: false
+Cmd:
+repoctl list projects
+
+---
+
+ Project            | Tag            
+--------------------+----------------
+ example            |                
+ spiko              | frontend       
+ rmrfrs           | frontend, misc 
+ awesome-job-boards | cli            
+

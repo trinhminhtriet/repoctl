@@ -1,0 +1,9 @@
+Index: 0
+Name: Throw error when trying to sync a non-existing repoctl repository
+WantErr: true
+Cmd:
+repoctl sync
+
+
+---
+[31merror[0m: cannot find any configuration file [repoctl.yaml repoctl.yml .repoctl.yaml .repoctl.yml] in current directory or any of the parent directories

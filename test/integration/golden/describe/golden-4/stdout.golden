@@ -1,0 +1,24 @@
+Index: 4
+Name: Describe projects matching 1 tag
+WantErr: false
+Cmd:
+repoctl describe projects --tags frontend
+
+---
+
+name: spiko
+sync: true
+path: trinhminhtriet/spiko
+url: https://github.com/trinhminhtriet/spiko
+single_branch: false
+tags: frontend
+
+--
+
+name: rmrfrs
+sync: true
+path: trinhminhtriet/rmrfrs
+url: https://github.com/trinhminhtriet/rmrfrs
+single_branch: false
+tags: frontend, misc
+

@@ -1,0 +1,40 @@
+Index: 2
+Name: Should exec in all projects
+WantErr: false
+Cmd:
+repoctl sync
+repoctl exec --all -o table ls
+
+
+---
+
+Project [spiko]
+
+
+Project [rmrfrs]
+
+
+Project [awesome-job-boards]
+
+
+
+ Project            | Synced 
+--------------------+--------
+ example            | ✓      
+ spiko              | ✓      
+ rmrfrs           | ✓      
+ awesome-job-boards | ✓      
+
+
+ project            | output             
+--------------------+--------------------
+ example            | frontend           
+                    | repoctl.yaml          
+                    | awesome-job-boards 
+--------------------+--------------------
+ spiko              | empty              
+--------------------+--------------------
+ rmrfrs           | empty              
+--------------------+--------------------
+ awesome-job-boards | empty              
+

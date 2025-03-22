@@ -1,0 +1,40 @@
+themes:
+  default:
+    tree:
+      style: bold
+
+    stream:
+      prefix: true
+      header: true
+      header_char: '*'
+      header_prefix: 'TASK'
+      prefix_colors: ['blue', 'red']
+
+    table:
+      style: light
+
+      border:
+        around: true
+        columns: true
+        header: true
+        rows: false
+
+  advanced:
+    tree:
+      style: light
+
+    stream:
+      prefix: true
+      header: true
+      header_char: '*'
+      header_prefix: 'TASK'
+      colors: ['blue', 'red']
+
+    table:
+      style: ascii
+
+      border:
+        around: true
+        columns: true
+        header: true
+        rows: true

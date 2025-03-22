@@ -1,0 +1,42 @@
+Index: 3
+Name: Describe all projects
+WantErr: false
+Cmd:
+repoctl describe projects
+
+---
+
+name: example
+sync: true
+path: .
+url: 
+single_branch: false
+
+--
+
+name: spiko
+sync: true
+path: trinhminhtriet/spiko
+url: https://github.com/trinhminhtriet/spiko
+single_branch: false
+tags: frontend
+
+--
+
+name: rmrfrs
+sync: true
+path: trinhminhtriet/rmrfrs
+url: https://github.com/trinhminhtriet/rmrfrs
+single_branch: false
+tags: frontend, misc
+
+--
+
+name: awesome-job-boards
+sync: true
+url: https://github.com/trinhminhtriet/awesome-job-boards
+single_branch: false
+tags: cli
+env: 
+    branch: dev
+

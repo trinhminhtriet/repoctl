@@ -1,0 +1,15 @@
+targets:
+  default:
+    all: false
+    cwd: true
+
+  blast:
+    projects: [blast]
+
+  all:
+    all: true
+
+  root:
+    projects: [playground]
+    cwd: true
+

@@ -1,0 +1,16 @@
+projects:
+  golden-1:
+    path: .
+    url: https://github.com/trinhminhtriet/spiko
+  
+  awesome-job-boards:
+    path: nested/awesome-job-boards
+    url: https://github.com/trinhminhtriet/awesome-job-boards
+  
+  blast:
+    url: https://github.com/trinhminhtriet/blast
+  
+tasks:
+  hello:
+    desc: Print Hello World
+    cmd: echo "Hello World"
