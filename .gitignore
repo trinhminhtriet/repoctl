@@ -28,4 +28,5 @@ release-changelog.md
 assets
 .config
 
-res/go
+res
+examples
