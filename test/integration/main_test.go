@@ -27,7 +27,7 @@ var update = flag.Bool("update", false, "update golden files")
 var clean = flag.Bool("clean", false, "Clean tmp directory after run")
 
 var copyOpts = copy.Options{
-	Skip: func(src string) (bool, error) {
+	Skip: func(srcinfo os.FileInfo, src string, dest string) (bool, error) {
 		return strings.HasSuffix(src, ".git"), nil
 	},
 }
