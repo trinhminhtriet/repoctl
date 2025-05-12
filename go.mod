@@ -8,7 +8,7 @@ require (
 	github.com/gookit/color v1.5.4
 	github.com/jedib0t/go-pretty/v6 v6.6.7
 	github.com/jinzhu/copier v0.4.0
-	github.com/kr/pretty v0.2.1
+	github.com/kr/pretty v0.3.1
 	github.com/otiai10/copy v1.14.1
 	github.com/rivo/tview v0.0.0-20241227133733-17b7edb88c57
 	github.com/spf13/cobra v1.9.1
@@ -32,6 +32,7 @@ require (
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/otiai10/mint v1.6.3 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
+	github.com/rogpeppe/go-internal v1.9.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	golang.org/x/sync v0.12.0 // indirect
