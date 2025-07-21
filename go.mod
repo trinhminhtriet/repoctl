@@ -12,7 +12,7 @@ require (
 	github.com/otiai10/copy v1.14.1
 	github.com/rivo/tview v0.0.0-20250501113434-0c592cd31026
 	github.com/spf13/cobra v1.9.1
-	github.com/spf13/pflag v1.0.6
+	github.com/spf13/pflag v1.0.7
 	github.com/theckman/yacspin v0.13.12
 	golang.org/x/sys v0.33.0
 	golang.org/x/term v0.32.0
