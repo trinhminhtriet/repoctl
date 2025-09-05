@@ -5,7 +5,7 @@ go 1.24
 require (
 	github.com/fsnotify/fsnotify v1.9.0
 	github.com/gdamore/tcell/v2 v2.8.1
-	github.com/gookit/color v1.5.4
+	github.com/gookit/color v1.6.0
 	github.com/jedib0t/go-pretty/v6 v6.6.8
 	github.com/jinzhu/copier v0.4.0
 	github.com/kr/pretty v0.3.1
